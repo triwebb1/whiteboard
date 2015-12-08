@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Boards</title>
+</head>
+<body>
+<h1>Active Boards:</h1>
+<ul id="list"></ul>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
+<script src="/socket.io/socket.io.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	var socket = io();
+
+	setInterval(function(){socket.emit('getList','');},2000);
+	
+	socket.on('listActive',function(msg){
+		$("#list").empty();
+		var list = $.parseJSON(msg);
+		
+		for (var i=0; i<list.length; i++){
+			$("#list").append("<li><a href='/board/" + list[i] + "'>Board " + list[i] + "</a></li>");
+		}	
+		
+		if (list.length == 0)
+			$("#list").append("<li>There are no active boards</li>");
+	});
+</script>
+
+</body>
+</html>
