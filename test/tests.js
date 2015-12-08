@@ -1,13 +1,4 @@
 /*
-	- homepage loads list of boards
-	- board sets title
-	- board loads paper.js
-	- socket registration
-	- socket subscribe
-	- socket point
-*/
-
-/*
 	The test stack looks like this:
 		- mocha (test runner)
 		- selenium-webdriver (browser and controls for browser)
@@ -22,7 +13,6 @@ var until = webdriver.until;
 var io = require('socket.io-client');
 
 before(function(){
-	this.timeout = 10000;
 	this.driver = new webdriver.Builder()
 		.withCapabilities(webdriver.Capabilities.phantomjs())
 		.build();
